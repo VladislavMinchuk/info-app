@@ -1,0 +1,10 @@
+form(action="/login" method="POST")
+  .form-group
+    label(for="email") Email
+    input(type="email" id="email" name="email" class="form-control")
+  .form-group
+    label(for="password") Password
+    input(type="password" id="password" name="password" class="form-control")
+  .form-group
+    button(type="submit" class="btn btn-warning card-link") Login
+    a(href="/regist" class="small card-link") Registration

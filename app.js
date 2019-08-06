@@ -33,5 +33,5 @@ app.use(function(err, req, res, next) {
 
 // Start our server
 app.listen(port, () => {
-  console.log('Server listening on port ' + port)
+  console.log('Server listening on port ' + port);
 });

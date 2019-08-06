@@ -2,11 +2,10 @@ extends layout
 
 block content
   include includes/header.pug
-  main
-    section.search-section.py-4
-      .container
-        h1.h3 Search user
-        form.main-form(method="POST" action="/")
-          .form-group
-            input(type="text" name="name" placeholder="Name" class="form-control")
-          button(type="submit" class="btn btn-warning") Submit
+  section.search-section.py-4
+    .container
+      h1.h3 Search user
+      form.main-form(method="POST" action="/")
+        .form-group
+          input(type="text" name="name" placeholder="Name" class="form-control")
+        button(type="submit" class="btn btn-warning") Submit
