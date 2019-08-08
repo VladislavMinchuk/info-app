@@ -1,5 +1,8 @@
 module.exports.getPage = function(req, res) {
-  res.status(200).render('form', { page: 'registration' });
+  // let page = 'registration';
+  let page = 'login';
+
+  res.status(200).render('form', { page: page });
 };
 
 // module.exports.sendData = function(req, res) {

@@ -4,8 +4,33 @@ block content
   include includes/header.pug
   section.search-section.py-4
     .container
-      h1.h3 Search user
-      form.main-form(method="POST" action="/")
-        .form-group
-          input(type="text" name="name" placeholder="Name" class="form-control")
-        button(type="submit" class="btn btn-warning") Submit
+      .row.justify-content-md-center
+        .con-md-10.col-lg-6
+          .card  
+            form.main-form(method="POST" action="/" class="bg-light card-body")
+              h1.h3 Search user
+              .form-group
+                input(type="text" name="name" placeholder="Name" class="form-control")
+              .form-group
+                .row
+                  .col
+                    input(type="text" name="age-from" placeholder="From" class="form-control")
+                  .col
+                    input(type="text" name="age-to" placeholder="To" class="form-control")
+              .form-group
+                select(class="form-control" name="city")
+                  option(value="Kharkiv") Kharkiv
+                  option(value="Odessa") Odessa
+              .form-group
+                select(class="form-control" name="position")
+                  option(value="Fron-End") Fron-End
+                  option(value="Back-End") Back-End
+                  option(value="PM") PM
+                  option(value="QA") QA
+              .form-group
+                select(class="form-control" name="cluster")
+                  option(value="1") 1
+                  option(value="2") 2
+                  option(value="3") 3              
+
+              button(type="submit" class="btn btn-warning w-100") Submit
