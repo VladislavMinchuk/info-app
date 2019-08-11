@@ -9,7 +9,4 @@ router.post('/', controllerHome.sendData);
 
 router.get('/form', controllerForm.getPage);
 
-// router.get('/about', ctrlAbout.getAbout);
-// router.get('/contact', ctrlContact.getContact);
-
 module.exports = router;
