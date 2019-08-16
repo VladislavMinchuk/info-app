@@ -2,13 +2,31 @@ const port = process.env.PORT || '3000';
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const db = require('./config/database');
+
+// Test connection sequelize
+db.authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 // Create global app object
 const app = express();
 
-// Normal express config defaults
+// For BodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// For Passport
+
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
