@@ -3,20 +3,28 @@ extends layout
 block content
   include includes/header.pug
   section.search-section.py-4
+    if (badReqForm.length)
+      - var name = badReqForm[0].name
+      - var surname = badReqForm[0].surname
+      - var age = badReqForm[0].age
     .container
       .row.justify-content-md-center
         .con-md-10.col-lg-6
-          p= empyFields
-          p= complete
+          if empyFields.length
+            .alert.alert-danger
+              p.mb-0 This fields is required: #{empyFields}
+          if complete.length
+            .alert.alert-success
+              p.mb-0= complete
           .card
             form.main-form(method="POST" action="/user" class="bg-light card-body")
               h1.h3 Add user
               .form-group
-                input(type="text" name="name" placeholder="Name" class="form-control")
+                input(type="text" name="name" value=name || "" placeholder="Name" class="form-control")
               .form-group
-                input(type="text" name="surname" placeholder="Surname" class="form-control")
+                input(type="text" name="surname" value=surname || "" placeholder="Surname" class="form-control")
               .form-group
-                input(type="text" name="age" placeholder="Age" class="form-control")
+                input(type="text" name="age" value=age || "" placeholder="Age" class="form-control")
               .form-group
                 select(class="form-control" name="city")
                   option(value="Kharkiv") Kharkiv
