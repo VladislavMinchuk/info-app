@@ -3,8 +3,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const passport = require('passport');
+const flash = require('connect-flash');
 const db = require('./config/database');
+
+// Create global app object
+const app = express();
 
 // Test connection sequelize
 db.authenticate()
@@ -15,18 +18,15 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-// Create global app object
-const app = express();
-
 // For BodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// For Passport
+// Session init
+app.use(session({ secret: 'cat', resave: true, saveUninitialized: true })); // session secret
 
-app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// Flesh message
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
