@@ -18,9 +18,9 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 // sync all tables >> will create if not exists
-db.sync({
-  logging: console.log,
-});
+// db.sync({
+//   logging: console.log,
+// });
 
 // For BodyParser
 app.use(bodyParser.json());
