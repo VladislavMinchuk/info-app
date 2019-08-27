@@ -1,22 +1,17 @@
-const Sequelize = require('sequelize');
-const db = require('../config/database');
-
-const Cities = db.define(
-  'cities',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Cities = sequelize.define(
+    'cities',
+    {
+      city: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
     },
-    city: {
-      type: Sequelize.STRING,
-    },
-  },
-  {
-    timestamps: false,
-  }
-);
-
-module.exports = Cities;
+    {}
+  );
+  Cities.associate = function(models) {
+    Cities.hasMany(models.employees, { foreignKey: 'city_id' });
+  };
+  return Cities;
+};

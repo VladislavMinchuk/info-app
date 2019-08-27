@@ -1,36 +1,39 @@
-const Sequelize = require('sequelize');
-const db = require('../config/database');
-
-const Employees = db.define(
-  'employees',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Employees = sequelize.define(
+    'employees',
+    {
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      surname: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      age: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      position_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      city_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      cluster_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
     },
-    name: {
-      type: Sequelize.STRING,
-    },
-    surname: {
-      type: Sequelize.STRING,
-    },
-    age: {
-      type: Sequelize.INTEGER,
-    },
-    city: {
-      type: Sequelize.STRING,
-    },
-    position: {
-      type: Sequelize.STRING,
-    },
-    cluster: {
-      type: Sequelize.INTEGER,
-    },
-  },
-  {
-    timestamps: false,
-  }
-);
-
-module.exports = Employees;
+    {}
+  );
+  Employees.associate = function(models) {
+    Employees.belongsTo(models.positions, { foreignKey: 'position_id' });
+    Employees.belongsTo(models.cities, { foreignKey: 'city_id' });
+    Employees.belongsTo(models.clusters, { foreignKey: 'cluster_id' });
+  };
+  return Employees;
+};

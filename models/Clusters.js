@@ -1,22 +1,17 @@
-const Sequelize = require('sequelize');
-const db = require('../config/database');
-
-const Clusters = db.define(
-  'clusters',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Clusters = sequelize.define(
+    'clusters',
+    {
+      cluster: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
     },
-    clusters: {
-      type: Sequelize.INTEGER,
-    },
-  },
-  {
-    timestamps: false,
-  }
-);
-
-module.exports = Clusters;
+    {}
+  );
+  Clusters.associate = function(models) {
+    Clusters.hasMany(models.employees, { foreignKey: 'cluster_id' });
+  };
+  return Clusters;
+};
