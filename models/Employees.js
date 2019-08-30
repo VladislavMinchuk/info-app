@@ -1,4 +1,6 @@
 'use strict';
+const Positions = require('../models').positions;
+
 module.exports = (sequelize, DataTypes) => {
   const Employees = sequelize.define(
     'employees',
