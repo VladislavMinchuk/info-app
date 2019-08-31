@@ -19,19 +19,16 @@ block content
                     input(type="text" name="age-to" placeholder="To" class="form-control")
               .form-group
                 select(class="form-control" name="city")
-                  option(value="Kharkiv") Kharkiv
-                  option(value="Odessa") Odessa
+                  each object in data.cities
+                    option(value=object.city) #{object.city}
               .form-group
                 select(class="form-control" name="position")
-                  option(value="Fron-End") Fron-End
-                  option(value="Back-End") Back-End
-                  option(value="PM") PM
-                  option(value="QA") QA
+                  each object in data.positions
+                    option(value=object.position) #{object.position}
               .form-group
                 select(class="form-control" name="cluster")
-                  option(value="1") 1
-                  option(value="2") 2
-                  option(value="3") 3              
+                  each object in data.clusters
+                    option(value=object.cluster) #{object.cluster}
 
               button(type="submit" class="btn btn-warning w-100") Submit
   include includes/result-section.pug

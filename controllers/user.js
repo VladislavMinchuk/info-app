@@ -1,4 +1,4 @@
-const Employees = require('../models/Employees');
+const Employees = require('../models').employees;
 
 module.exports.getPage = (req, res) => {
   res.render('user-add', {
