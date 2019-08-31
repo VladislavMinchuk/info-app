@@ -6,9 +6,6 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const db = require('./config/database');
 
-const Employees = require('./models').employees;
-const Positions = require('./models').positions;
-// console.log(Employees);
 // Create global app object
 const app = express();
 
@@ -20,11 +17,6 @@ db.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
-// sync all tables >> will create if not exists
-// db.sync({
-//   logging: console.log,
-// });
 
 // For BodyParser
 app.use(bodyParser.json());
