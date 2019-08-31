@@ -126,15 +126,15 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface
-      .dropTable('positions')
+      .dropTable('employees')
+      .then(() => {
+        return queryInterface.dropTable('positions');
+      })
       .then(() => {
         return queryInterface.dropTable('cities');
       })
       .then(() => {
         return queryInterface.dropTable('clusters');
-      })
-      .then(() => {
-        return queryInterface.dropTable('employees');
       })
       .catch(console.log);
   },
