@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const controllerHome = require('../controllers/home');
-const controllerUser = require('../controllers/user');
+const controllerUserAdd = require('../controllers/user_add');
 const validateForm = require('../controllers/validate_form');
 
 router.get('/', controllerHome.getIndex);
-router.post('/', controllerHome.sendData);
+router.get('/users', controllerHome.getUsers);
 
-router.get('/user', controllerUser.getPage);
-router.post('/user', validateForm, controllerUser.addUser);
+router.get('/form-add', controllerUserAdd.getPage);
+router.post('/users', validateForm, controllerUserAdd.addUser);
 
 module.exports = router;

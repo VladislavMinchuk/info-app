@@ -3,7 +3,7 @@ const Positions = require('../models').positions;
 const Clusters = require('../models').clusters;
 
 module.exports.getIndex = async function(req, res) {
-  let data = {
+  let formData = {
     cities: await Cities.findAll({
       raw: true,
       attributes: ['city'],
@@ -17,10 +17,9 @@ module.exports.getIndex = async function(req, res) {
       attributes: ['cluster'],
     }),
   };
-
-  res.render('home', { data });
+  res.render('home', { formData });
 };
 
-module.exports.sendData = function(req, res) {
-  res.json({ title: 'Main' });
+module.exports.getUsers = function(req, res) {
+  res.render('home', { data });
 };

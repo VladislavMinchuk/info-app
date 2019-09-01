@@ -7,27 +7,23 @@ block content
       .row.justify-content-md-center
         .con-md-10.col-lg-6
           .card  
-            form.main-form(method="POST" action="/" class="bg-light card-body")
+            form.main-form(method="GET" action="/users" class="bg-light card-body")
               h1.h3 Search user
               .form-group
                 input(type="text" name="name" placeholder="Name" class="form-control")
               .form-group
-                .row
-                  .col
-                    input(type="text" name="age-from" placeholder="From" class="form-control")
-                  .col
-                    input(type="text" name="age-to" placeholder="To" class="form-control")
+                input(type="number" name="age" placeholder="Age" class="form-control")
               .form-group
                 select(class="form-control" name="city")
-                  each object in data.cities
+                  each object in formData.cities
                     option(value=object.city) #{object.city}
               .form-group
                 select(class="form-control" name="position")
-                  each object in data.positions
+                  each object in formData.positions
                     option(value=object.position) #{object.position}
               .form-group
                 select(class="form-control" name="cluster")
-                  each object in data.clusters
+                  each object in formData.clusters
                     option(value=object.cluster) #{object.cluster}
 
               button(type="submit" class="btn btn-warning w-100") Submit

@@ -14,7 +14,7 @@ module.exports.addUser = (req, res) => {
   if (req.errorFields.length) {
     req.flash('bodyForm', req.body);
     req.flash('empyFields', req.errorFields);
-    res.redirect('/user');
+    res.redirect('/form-add');
   } else {
     Employees.create({
       name: name,
@@ -27,7 +27,7 @@ module.exports.addUser = (req, res) => {
       .then(() => {
         req.flash('completeMsg', `User ${name} ${surname} added.`);
         console.log('User added');
-        res.redirect('/user');
+        res.redirect('/form-add');
       })
       .catch(err => {
         console.log('Error: ' + err);
