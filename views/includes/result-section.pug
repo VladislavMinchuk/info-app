@@ -1,5 +1,8 @@
 section
   .container
+    if(messageError)
+      h4= messageError
+
     table.table.table-striped
       thead
         tr
@@ -11,21 +14,7 @@ section
           th Position
           th Cluster
       tbody
-        tr
-          //- each object in data.cities
-          //-   td
-          td 1
-          td Jon
-          td Snow
-          td 34
-          td New York City
-          td Front-End developer
-          td 3
-        tr
-          td 2
-          td Jon
-          td Snow
-          td 22
-          td New York City
-          td Back-End developer
-          td 3
+        each row in data
+          tr
+            each user in row
+              td= user
