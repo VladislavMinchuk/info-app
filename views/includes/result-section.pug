@@ -2,19 +2,19 @@ section
   .container
     if(messageError)
       h4= messageError
-
-    table.table.table-striped
-      thead
-        tr
-          th #
-          th Name
-          th Surname
-          th Age
-          th City
-          th Position
-          th Cluster
-      tbody
-        each row in data
+    if(data)
+      table.table.table-striped
+        thead
           tr
-            each user in row
-              td= user
+            th #
+            th Name
+            th Surname
+            th Age
+            th City
+            th Position
+            th Cluster
+        tbody
+          each row in data
+            tr
+              each user in row
+                td= user
