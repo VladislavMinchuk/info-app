@@ -9,8 +9,14 @@ module.exports.getIndex = function(req, res) {
 };
 
 module.exports.getUsers = function(req, res) {
-  const { name, surname, age, city, cluster, position } = req.query;
+  const messageError = 'User not found!';
+  const { city, position, cluster } = req.query;
   let fieldsHasValue = {};
+  let requestObj = {
+    name: req.query.name,
+    surname: req.query.surname,
+    age: req.query.age,
+  };
 
   for (const field in req.query) {
     if (req.query.hasOwnProperty(field)) {
@@ -22,24 +28,29 @@ module.exports.getUsers = function(req, res) {
     }
   }
 
-  console.log(fieldsHasValue);
-
   Employees.findAll({
     raw: true,
     where: fieldsHasValue,
     include: [
-      { model: Cities, where: { city: city }, attributes: ['city'] },
-      { model: Positions, where: { position: position }, attributes: ['position'] },
-      { model: Clusters, where: { cluster: cluster }, attributes: ['cluster'] },
+      { model: Cities, where: { id: city }, attributes: ['city'] },
+      { model: Positions, where: { id: position }, attributes: ['position'] },
+      { model: Clusters, where: { id: cluster }, attributes: ['cluster'] },
     ],
     attributes: ['id', 'name', 'surname', 'age'],
   })
     .then(data => {
-      console.log(data);
-      res.render('home', { formData: req.formData, data: data, request: req.query });
+      if (data.length) {
+        requestObj.city = data[0]['city.city'];
+        requestObj.position = data[0]['position.position'];
+        requestObj.cluster = data[0]['cluster.cluster'];
+
+        res.render('home', { formData: req.formData, data: data, request: requestObj });
+      } else {
+        res.render('home', { formData: req.formData, messageError: messageError });
+      }
     })
     .catch(err => {
       console.log(err);
-      res.render('home', { formData: req.formData, messageError: `${req.query.name} not found!` });
+      res.render('home', { formData: req.formData, messageError: messageError });
     });
 };

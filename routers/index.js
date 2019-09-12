@@ -9,7 +9,7 @@ const formData = require('../controllers/form_data');
 router.get('/', formData, controllerHome.getIndex);
 router.get('/users', formData, controllerHome.getUsers);
 
-router.get('/form-add', controllerUserAdd.getPage);
+router.get('/form-add', formData, controllerUserAdd.getPage);
 router.post('/users', validateForm, controllerUserAdd.addUser);
 
 module.exports = router;

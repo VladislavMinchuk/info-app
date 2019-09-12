@@ -27,18 +27,15 @@ block content
                 input(type="number" name="age" value=age || "" placeholder="Age" class="form-control")
               .form-group
                 select(class="form-control" name="city")
-                  option(value="Kharkiv") Kharkiv
-                  option(value="Odessa") Odessa
+                  each object in formData.cities
+                    option(value=object.id) #{object.city}
               .form-group
                 select(class="form-control" name="position")
-                  option(value="Fron-End") Fron-End
-                  option(value="Back-End") Back-End
-                  option(value="PM") PM
-                  option(value="QA") QA
+                  each object in formData.positions
+                    option(value=object.id) #{object.position}
               .form-group
                 select(class="form-control" name="cluster")
-                  option(value="1") 1
-                  option(value="2") 2
-                  option(value="3") 3              
+                  each object in formData.clusters
+                    option(value=object.id) #{object.cluster}            
 
               button(type="submit" class="btn btn-warning w-100") Add

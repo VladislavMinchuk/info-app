@@ -5,6 +5,7 @@ module.exports.getPage = (req, res) => {
     empyFields: req.flash('empyFields'),
     complete: req.flash('completeMsg'),
     badReqForm: req.flash('bodyForm'),
+    formData: req.formData,
   });
 };
 
@@ -20,9 +21,9 @@ module.exports.addUser = (req, res) => {
       name: name,
       surname: surname,
       age: age,
-      city: city,
-      position: position,
-      cluster: cluster,
+      city_id: city,
+      position_id: position,
+      cluster_id: cluster,
     })
       .then(() => {
         req.flash('completeMsg', `User ${name} ${surname} added.`);
@@ -30,6 +31,7 @@ module.exports.addUser = (req, res) => {
         res.redirect('/form-add');
       })
       .catch(err => {
+        res.redirect('/form-add');
         console.log('Error: ' + err);
       });
   }

@@ -1,20 +1,23 @@
-section
-  .container
-    if(messageError)
-      h4= messageError
-    if(data)
-      table.table.table-striped
-        thead
-          tr
-            th #
-            th Name
-            th Surname
-            th Age
-            th City
-            th Position
-            th Cluster
-        tbody
-          each row in data
-            tr
-              each user in row
-                td= user
+table.table.table-striped
+  thead
+    tr
+      th #
+      th Name
+      th Surname
+      th Age
+      th City
+      th Position
+      th Cluster
+  tbody
+    each row, indexRow in data
+      tr
+        td= indexRow+1
+
+        each userInfo, field in row
+          if (field === 'id')
+            continue
+          else if (field === 'name')
+            td
+              a(href="users/"+row['id'])= userInfo
+          else
+            td= userInfo

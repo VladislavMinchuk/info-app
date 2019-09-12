@@ -7,15 +7,15 @@ module.exports = async function(req, res, next) {
   req.formData = {
     cities: await Cities.findAll({
       raw: true,
-      attributes: ['city'],
+      attributes: ['id', 'city'],
     }),
     positions: await Positions.findAll({
       raw: true,
-      attributes: ['position'],
+      attributes: ['id', 'position'],
     }),
     clusters: await Clusters.findAll({
       raw: true,
-      attributes: ['cluster'],
+      attributes: ['id', 'cluster'],
     }),
   };
 
