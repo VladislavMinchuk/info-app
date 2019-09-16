@@ -3,7 +3,7 @@ module.exports = function(object) {
 
   for (const key in object) {
     if (object.hasOwnProperty(key)) {
-      lowerCaseObj[key] = object[key].toLowerCase();
+      lowerCaseObj[key] = object[key].toLowerCase().trim();
     }
   }
 

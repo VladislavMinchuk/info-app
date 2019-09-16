@@ -1,4 +1,3 @@
-const Op = require('Sequelize').Op;
 const Employees = require('../models').employees;
 const Cities = require('../models').cities;
 const Clusters = require('../models').clusters;

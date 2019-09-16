@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  include includes/header.pug
+
+  section.search-section.py-4
+    .container
+      .row.justify-content-center
+        .col-md-6.col-lg-5.mb-4
+          if empyFields.length
+            .alert.alert-danger
+              p.mb-0 This fields is required: #{empyFields}
+          if complete.length
+            .alert.alert-success
+              p.mb-0= complete
+          .card.bg-light.card-body
+            .d-md-flex.justify-content-md-between.mb-3
+              h1.h3.text-capitalize #{userObject.name} #{userObject.surname}
+              form(method="POST" action="/users/"+ userObject.id +"?_method=DELETE")
+                button(type="submit" class="btn btn-danger") Delete 
+            form.main-form(method="POST" action="/users/"+ userObject.id +"?_method=PUT")
+              .form-group.form-row.align-items-center
+                label(for="name" class="mb-0 col-3") Name
+                input(id="name" type="text" name="name" value=userObject.name || "" placeholder="Name" class="form-control col-9")
+              .form-group.form-row.align-items-center
+                label(for="surname" class="mb-0 col-3") Surname
+                input(id="surname" type="text" name="surname" value=userObject.surname || "" placeholder="Surname" class="form-control col-9")
+              .form-group.form-row.align-items-center
+                label(for="age" class="mb-0 col-3") Age
+                input(id="age" type="number" name="age" value=userObject.age || "" placeholder="Age" class="form-control col-9")
+              .form-group.form-row.align-items-center
+                label(for="city" class="mb-0 col-3") City
+                select(id="city" class="form-control col-9" name="city")
+                  each object in formData.cities
+                    if(userObject.city_id === object.id)
+                      option(value=object.id selected) #{object.city}
+                    else
+                      option(value=object.id) #{object.city}
+              .form-group.form-row.align-items-center
+                label(for="position" class="mb-0 col-3") Position
+                select(id="position" class="form-control col-9" name="position")
+                  each object in formData.positions
+                    if(userObject.position_id === object.id)
+                      option(value=object.id selected) #{object.position}
+                    else
+                      option(value=object.id) #{object.position}
+              .form-group.form-row.align-items-center
+                label(for="cluster" class="mb-0 col-3") Cluster
+                select(id="cluster" class="form-control col-9" name="cluster")
+                  each object in formData.clusters
+                    if(userObject.cluster_id === object.id)
+                      option(value=object.id selected) #{object.cluster}
+                    else
+                      option(value=object.id) #{object.cluster}
+              
+              button(type="submit" class="btn btn-warning w-100") Update

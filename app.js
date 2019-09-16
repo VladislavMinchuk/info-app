@@ -20,7 +20,7 @@ db.authenticate()
   });
 
 // For Override form methods
-app.use(methodOverride(req => req.body._method));
+app.use(methodOverride('_method'));
 
 // For BodyParser
 app.use(bodyParser.json());
