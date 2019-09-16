@@ -18,6 +18,8 @@ table.table.table-striped
             continue
           else if (field === 'name')
             td
-              a(href="users/"+row['id'])= userInfo
+              span= userInfo
+              a(href="users/"+row['id']) edit
+                i.ion.ion-md-create
           else
             td= userInfo

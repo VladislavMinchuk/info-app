@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 const db = require('./config/database');
 
 // Create global app object
@@ -17,6 +18,9 @@ db.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+// For Override form methods
+app.use(methodOverride(req => req.body._method));
 
 // For BodyParser
 app.use(bodyParser.json());

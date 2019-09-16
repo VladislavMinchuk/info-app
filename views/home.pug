@@ -4,19 +4,11 @@ block content
   include includes/header.pug
   section.search-section.py-4
     .container
-      if(request && data.length)
-        h1.h3 Your request
-        dl.d-flex.align-items-center.flex-wrap
-          each value, field in request
-            dt.mr-2= field + ':'
-            if (value.length < 1)
-              dd.mb-0.mr-2 ' '
-            dd.mb-0.mr-2= value
       .row.justify-content-center
-        .col-md-6.col-lg-5
+        .col-md-6.col-lg-5.mb-4
           if(messageError)
             h4= messageError
-          .card.mb-4
+          .card.h-100
             form.main-form(method="GET" action="/users" class="bg-light card-body")
               h1.h3 Search user
               h1.h3= users
@@ -40,8 +32,18 @@ block content
                     option(value=object.id) #{object.cluster}
 
               button(type="submit" class="btn btn-warning w-100") Submit
+        if(request && data.length)
+          .col-md-6.col-lg-5.mb-4
+            .card.card-body.bg-light.h-100
+              h1.h3 Your request
+              dl
+                each value, field in request
+                  dt= field + ':'
+                  if (value.length < 1)
+                    dd ' '
+                  dd= value
         if(data && data.length > 0)
-          .col-md-6.col-lg-7
+          .col-lg-10
             .card.card-body.bg-light
               h1.h3 Result table
               include includes/result-section.pug
