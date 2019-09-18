@@ -17,7 +17,7 @@ block content
             .alert.alert-success
               p.mb-0= complete
           .card
-            form.main-form(method="POST" action="/users?_method=POST" class="bg-light card-body")
+            form.main-form(method="POST" action="/users" class="bg-light card-body")
               h1.h3 Add user
               .form-group
                 input(type="text" name="name" value=name || "" placeholder="Name" class="form-control")

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  include includes/header.pug
+  section.py-4
+    .container
+      .row.justify-content-md-center
+        .con-md-10.col-lg-6
+          .alert.alert-info.text-center
+            if (message.length)
+              h2.alert-heading= message
+            else
+              h2.alert-heading Sorry, we have problems now(
+            a(href="/" class="alert-link") Back to home 
+          

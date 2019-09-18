@@ -10,8 +10,17 @@ module.exports = function(req, res, next) {
     attributes: ['id', 'name', 'surname', 'age', 'position_id', 'city_id', 'cluster_id'],
   })
     .then(data => {
-      req.userObject = data;
-      next();
+      console.log(data);
+      if (data) {
+        req.userObject = data;
+        next();
+      } else {
+        throw Error('Have no user!');
+      }
     })
-    .catch(console.log);
+    .catch(err => {
+      console.log(err);
+      req.flash('messageSorry', `${err}`); // set flash message
+      res.redirect('/sorry');
+    });
 };

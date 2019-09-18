@@ -16,9 +16,11 @@ block content
           .card.bg-light.card-body
             .d-md-flex.justify-content-md-between.mb-3
               h1.h3.text-capitalize #{userObject.name} #{userObject.surname}
-              form(method="POST" action="/users/"+ userObject.id +"?_method=DELETE")
+              form(method="POST" action="/users/"+userObject.id)
+                input(type="hidden" name="_method" value="DELETE")
                 button(type="submit" class="btn btn-danger") Delete 
-            form.main-form(method="POST" action="/users/"+ userObject.id +"?_method=PUT")
+            form.main-form(method="POST" action="/users/"+userObject.id)
+              input(type="hidden" name="_method" value="PUT")
               .form-group.form-row.align-items-center
                 label(for="name" class="mb-0 col-3") Name
                 input(id="name" type="text" name="name" value=userObject.name || "" placeholder="Name" class="form-control col-9")
