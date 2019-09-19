@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  //- include header
   include includes/header.pug
   section.search-section.py-4
     .container
@@ -8,44 +9,17 @@ block content
         .col-md-6.col-lg-5.mb-4
           if(messageError)
             h4= messageError
-          .card.h-100
-            form.main-form(method="GET" action="/users" class="bg-light card-body")
-              h1.h3 Search user
-              h1.h3= users
-              .form-group
-                input(type="text" name="name" placeholder="Name" class="form-control")
-              .form-group
-                input(type="text" name="surname" placeholder="Surname" class="form-control")
-              .form-group
-                input(type="number" name="age" placeholder="Age" class="form-control")
-              .form-group
-                select(class="form-control" name="city")
-                  each object in formData.cities
-                    option(value=object.id) #{object.city}
-              .form-group
-                select(class="form-control" name="position")
-                  each object in formData.positions
-                    option(value=object.id) #{object.position}
-              .form-group
-                select(class="form-control" name="cluster")
-                  each object in formData.clusters
-                    option(value=object.id) #{object.cluster}
-
-              button(type="submit" class="btn btn-warning w-100") Submit
+          //- include search form
+          include includes/search-form.pug 
         if(request && data.length)
           .col-md-6.col-lg-5.mb-4
-            .card.card-body.bg-light.h-100
-              h1.h3 Your request
-              dl
-                each value, field in request
-                  dt= field + ':'
-                  if (value.length < 1)
-                    dd ' '
-                  dd= value
+            //- include request card
+            include includes/request-card.pug 
         if(data && data.length > 0)
           .col-lg-10
             .card.card-body.bg-light
               h1.h3 Result table
+              //- include result table
               include includes/result-section.pug
         
 

@@ -11,5 +11,7 @@ block content
               h2.alert-heading= message
             else
               h2.alert-heading Sorry, we have problems now(
+            if (statusCode)
+              h3= statusCode
             a(href="/" class="alert-link") Back to home 
           

@@ -1,0 +1,23 @@
+.card
+  form.main-form(method="POST" action="/users" class="bg-light card-body")
+    h1.h3 Add user
+    .form-group
+      input(type="text" name="name" value=name || "" placeholder="Name" class="form-control")
+    .form-group
+      input(type="text" name="surname" value=surname || "" placeholder="Surname" class="form-control")
+    .form-group
+      input(type="number" name="age" value=age || "" placeholder="Age" class="form-control")
+    .form-group
+      select(class="form-control" name="city")
+        each object in formData.cities
+          option(value=object.id) #{object.city}
+    .form-group
+      select(class="form-control" name="position")
+        each object in formData.positions
+          option(value=object.id) #{object.position}
+    .form-group
+      select(class="form-control" name="cluster")
+        each object in formData.clusters
+          option(value=object.id) #{object.cluster}            
+
+    button(type="submit" class="btn btn-warning w-100") Add

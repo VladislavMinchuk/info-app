@@ -18,20 +18,22 @@ db.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-  
+
 // For BodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // For Override form methods
-app.use(methodOverride(function (req, res) {
-  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
-    var method = req.body._method;
-    delete req.body._method;
-    return method;
-  }
-}));
+app.use(
+  methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      var method = req.body._method;
+      delete req.body._method;
+      return method;
+    }
+  })
+);
 
 // Session init
 app.use(session({ secret: 'cat', resave: true, saveUninitialized: true })); // session secret
@@ -58,7 +60,8 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { message: err.message, error: err });
+  console.log(err.status);
+  res.render('error-page', { message: err.message, statusCode: err.status });
 });
 
 // Start our server

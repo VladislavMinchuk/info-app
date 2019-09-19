@@ -39,21 +39,19 @@ module.exports.putSingleUser = function(req, res) {
       res.redirect(`/users/${req.params.id}`);
     })
     .catch(err => {
-      res.render('/sorry');
+      res.render('/error-page');
     });
 };
 
 module.exports.deleteSingleUser = function(req, res) {
   console.log(req.params.id);
-  Employees.findOne({ where: { id: req.params.id } })
-    .then(user => {
-      return user.destroy({ truncate: true });
-    })
+  Employees.destroy({ where: { id: req.params.id } })
     .then(() => {
       req.flash('messageSorry', 'User deleted'); // set flash message
-      res.redirect('/sorry');
+      res.redirect('/error-page');
     })
     .catch(err => {
-      res.redirect('/sorry');
+      console.log(err);
+      res.redirect('/error-page');
     });
 };

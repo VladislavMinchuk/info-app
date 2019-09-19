@@ -21,6 +21,7 @@ module.exports = function(req, res, next) {
     .catch(err => {
       console.log(err);
       req.flash('messageSorry', `${err}`); // set flash message
-      res.redirect('/sorry');
+      req.flash('statusCode', 404); // set flash message
+      res.redirect('/error-page');
     });
 };
