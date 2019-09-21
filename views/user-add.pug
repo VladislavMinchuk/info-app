@@ -12,7 +12,8 @@ block content
         .con-md-10.col-lg-6
           if empyFields.length
             .alert.alert-danger
-              p.mb-0 This fields is required: #{empyFields}
+              each field in empyFields
+                p #[strong #{field}] is required 
           if complete.length
             .alert.alert-success
               p.mb-0= complete
