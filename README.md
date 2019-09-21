@@ -34,3 +34,8 @@ To insert some data into the tables by default
 npx sequelize-cli db:seed:all
 ```
 [Sequelize migrations documentation](https://sequelize.org/master/manual/migrations.html) 
+
+### Running app
+```Bash
+npm run start
+```
