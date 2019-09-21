@@ -6,9 +6,9 @@ Application based on:
 * Pug
 
 ## Get started
-1. Configure database
+1. **Configure database**
 `config.json`
-```JSON
+```Javascript
 {
   "development": {
     "username": "root", // your mysql username
