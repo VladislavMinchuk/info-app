@@ -6,7 +6,11 @@ Application based on:
 * Pug
 
 ## Get started
-1. **Configure database**
+1. **Install packages**
+```Bash
+npm install
+```
+2. **Configure database**
 `config.json`
 ```Javascript
 {
@@ -20,3 +24,4 @@ Application based on:
 }
 
 ```
+3. **Running Migrations**
