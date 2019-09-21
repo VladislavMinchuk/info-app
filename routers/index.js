@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const controllerHome = require('../controllers/home');
-const controllerUserAdd = require('../controllers/userAdd');
-const validateForm = require('../controllers/validateForm');
-const formData = require('../controllers/formData');
-const singleFormData = require('../controllers/singleFormData');
-const singleUser = require('../controllers/singleUser');
+const controllerHome = require('../controllers/home'); // get home page (search form) / search users
+const controllerUserAdd = require('../controllers/userAdd'); // get user add page / user add to DB
+const validateForm = require('../controllers/validateForm'); // check empty fields
+const formData = require('../controllers/formData'); // get data for form select
+const singleFormData = require('../controllers/singleFormData'); // get data single user
+const singleUser = require('../controllers/singleUser'); // get/update/delete - single user
 const errorPageController = require('../controllers/errorPage');
 
 router.get('/', formData, controllerHome.getIndex);

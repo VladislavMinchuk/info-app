@@ -1,5 +1,5 @@
 const Employees = require('../models').employees;
-const toLowerCaseFunc = require('../controllers/toLowerCase');
+const toLowerCaseFunc = require('./toLowerCase');
 
 module.exports.getPage = (req, res) => {
   res.render('user-add', {
