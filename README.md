@@ -6,11 +6,11 @@ Application based on:
 * Pug
 
 ## Get started
-1. **Install packages**
+### Install packages
 ```Bash
 npm install
 ```
-2. **Configure database**
+### Configure database
 `config.json`
 ```Javascript
 {
@@ -24,7 +24,7 @@ npm install
 }
 
 ```
-3. **Running Migrations**
+### Running Migrations
 To create the tables in database you need to run
 ```Bash
 npx sequelize-cli db:migrate
