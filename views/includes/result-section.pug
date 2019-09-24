@@ -1,25 +1,26 @@
-table.table.table-striped
-  thead
-    tr
-      th #
-      th Name
-      th Surname
-      th Age
-      th City
-      th Position
-      th Cluster
-  tbody
-    each row, indexRow in data
+.overflow-auto
+  table.table.table-striped.text-capitalize
+    thead
       tr
-        td= indexRow+1
+        th #
+        th Name
+        th Surname
+        th Age
+        th City
+        th Position
+        th Cluster
+    tbody
+      each row, indexRow in data
+        tr
+          td= indexRow+1
 
-        each userInfo, field in row
-          if (field === 'id')
-            continue
-          else if (field === 'name')
-            td
-              span= userInfo
-              a(href="users/"+row['id']) edit
-                i.ion.ion-md-create
-          else
-            td= userInfo
+          each userInfo, field in row
+            if (field === 'id')
+              continue
+            else if (field === 'name')
+              td
+                span= userInfo
+                a(href="users/"+row['id'] class="ml-2") edit
+                  i.ion.ion-md-create
+            else
+              td= userInfo

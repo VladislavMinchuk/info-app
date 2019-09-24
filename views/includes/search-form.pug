@@ -9,15 +9,15 @@
     .form-group
       input(type="number" name="age" placeholder="Age" class="form-control")
     .form-group
-      select(class="form-control" name="city")
+      select(class="form-control text-capitalize" name="city")
         each object in formData.cities
           option(value=object.id) #{object.city}
     .form-group
-      select(class="form-control" name="position")
+      select(class="form-control text-capitalize" name="position")
         each object in formData.positions
           option(value=object.id) #{object.position}
     .form-group
-      select(class="form-control" name="cluster")
+      select(class="form-control text-capitalize" name="cluster")
         each object in formData.clusters
           option(value=object.id) #{object.cluster}
 
